@@ -1,0 +1,37 @@
+.button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+
+  padding: 10px 15px;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.25s;
+  padding: 15px 40px; 
+  margin-top: 10px;
+
+  &:hover {
+    border-color: #646cff;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    border-color: #a27bfd;
+    background-color: #111111;
+  }
+
+  @media (max-width: 600px) {
+    display: block;
+    width: 100%; 
+    font-weight: 400;
+    padding: 5px 0;
+    font-size: 15px;
+
+    &:hover {
+      border-color: #646cff;
+      transform: none;
+    }
+  }
+}

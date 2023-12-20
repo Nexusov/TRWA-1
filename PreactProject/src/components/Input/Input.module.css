@@ -1,0 +1,11 @@
+.input {
+  height: 70px;
+  width: 75%;
+  border-radius: 11px;
+  border: 1px solid gray;
+
+  &:focus {
+    transform: scaleX(1.01);
+    transition: all 0.25s;
+  }
+}

@@ -1,0 +1,15 @@
+.textContainer {
+  margin: 100px 200px;
+  margin-top: 0;
+  padding-bottom: 50px;
+
+  p {
+    font-size: 18px;
+    text-indent: 1.5em;
+    line-height: 30px;
+  }
+
+  @media (max-width: 600px) {
+    margin: 20px;
+  }
+}
