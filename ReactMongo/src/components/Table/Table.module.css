@@ -2,6 +2,9 @@ table {
   width: 100%;
   position: relative;
   padding: 0 20px;
+  margin-bottom: 50px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.274);
 
   th {
     max-width: 100px;
@@ -51,4 +54,12 @@ table {
     flex-direction: column;
     padding: 0 15px;
   }
+}
+
+.title {
+  display: flex;
+  justify-self: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  font-size: 30px;
 }

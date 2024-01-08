@@ -3,6 +3,11 @@
   width: 75%;
   border-radius: 11px;
   border: 1px solid gray;
+  padding-left: 10px;
+
+  &::placeholder {
+    padding-left: 10px;
+  }
 
   &:focus {
     transform: scaleX(1.01);

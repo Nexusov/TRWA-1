@@ -5,14 +5,37 @@ import Loader from '../components/Loader/Loader';
 import Error from '../components/Error/Error';
 
 const Index = () => {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null); 
+  const [students, setStudents] = useState([])
+  const [teachers, setTeachers] = useState([])
+  const [groups, setGroups] = useState([]) 
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null) 
 
-  const fetchData = () => {
+  const fetchStudents = () => {
+    setLoading(true)
+    setError(null)
+    fetch('http://localhost:3000/laba') 
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was failed')
+        }
+        return response.json()
+      })
+      .then((data) => {
+        setStudents(data)
+      })
+      .catch((error) => {
+        setError('Failed to load data', error)
+      })
+      .finally(() => {
+        setLoading(false);
+      })
+  }
+
+  const fetchTeachers = () => {
     setLoading(true);
     setError(null); 
-    fetch('http://localhost:3000/laba')
+    fetch('http://localhost:3001/teachers') 
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was failed');
@@ -20,33 +43,57 @@ const Index = () => {
         return response.json();
       })
       .then((data) => {
-        setUsers(data);
+        setTeachers(data); 
       })
       .catch((error) => {
         setError('Failed to load data', error); 
       })
       .finally(() => {
         setLoading(false); 
-      });
+      })
   };
+
+  const fetchGroups = () => {
+    setLoading(true);
+    setError(null); 
+    fetch('http://localhost:3002/groups') 
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was failed');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setGroups(data); 
+      })
+      .catch((error) => {
+        setError('Failed to load data', error); 
+      })
+      .finally(() => {
+        setLoading(false); 
+      })
+  }
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchStudents()
+    fetchTeachers()
+    fetchGroups()
+  }, [])
 
-  const deleteData = async (id) => {
-    await fetch(`http://localhost:3000/laba/${id}`, {
+  const deleteData = async (port, db, id) => {
+    await fetch(`http://localhost:${port}/${db}/${id}`, {
       method: 'DELETE',
     });
-    fetchData();
-  };
-
+    fetchStudents()
+    fetchTeachers()
+    fetchGroups()
+  }
 
   return (
     <>
       <Header />
       {loading && <Loader />}
-      <Table users={users} deleteData={deleteData} loading={loading} />
+      <Table students={students} teachers={teachers} groups={groups} deleteData={deleteData} loading={loading} />
       {error && <Error error={error}/>}
     </>
   );
